@@ -565,8 +565,18 @@ a { overflow-wrap: anywhere; }
   list-style: none;
   width: max-content;
   animation: presenter-scroll 40s linear infinite;
+  /* GPU hints so phones keep the animation running off-screen */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
-.carousel:hover .carousel-track,
+
+/* Pause on hover — only on devices that actually support hover */
+@media (hover: hover) {
+  .carousel:hover .carousel-track {
+    animation-play-state: paused;
+  }
+}
 .carousel:focus-within .carousel-track {
   animation-play-state: paused;
 }
@@ -658,8 +668,17 @@ a { overflow-wrap: anywhere; }
   list-style: none;
   width: max-content;
   animation: mini-scroll 24s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
-.mini-carousel:hover .mini-carousel-track,
+
+/* Pause on hover — only on devices that support hover */
+@media (hover: hover) {
+  .mini-carousel:hover .mini-carousel-track {
+    animation-play-state: paused;
+  }
+}
 .mini-carousel:focus-within .mini-carousel-track {
   animation-play-state: paused;
 }
