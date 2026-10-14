@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom'
 import Waves from '../components/Waves.jsx'
 import RotatingWord from '../components/RotatingWord.jsx'
 import ShowCard from '../components/ShowCard.jsx'
+import OnAirPresenters from '../components/OnAirPresenters.jsx'
+import PresenterCarousel from '../components/PresenterCarousel.jsx'
 import useNow from '../components/useNow.js'
-import { rotatingWords, getOnAir, schedule, news, station } from '../data.js'
+import { rotatingWords, getOnAir, schedule, news, station, presenters, getPresentersFor } from '../data.js'
 
 const tiles = [
   { to: '/competition', title: 'Competitions', text: 'Listen in, enter and win.' },
@@ -19,6 +21,7 @@ export default function Home({ onListen }) {
   const onAir = getOnAir(now)
   const today = schedule[now.getDay()]
   const liveId = onAir?.state === 'live' ? onAir.show.id : null
+  const onAirPresenters = onAir ? getPresentersFor(onAir.show.id) : null
   const story = news[0]
 
   return (
@@ -60,10 +63,12 @@ export default function Home({ onListen }) {
               </p>
               <img src={onAir.show.image} alt="" />
               <h2>{onAir.show.name}</h2>
-              <p className="on-air-hosts">Hosted by {onAir.show.hosts}</p>
               <p className="on-air-time">
                 {onAir.show.start} to {onAir.show.end}
               </p>
+              {onAirPresenters && (
+                <OnAirPresenters group={onAirPresenters} />
+              )}
             </aside>
           )}
         </div>
@@ -91,6 +96,18 @@ export default function Home({ onListen }) {
       </section>
 
       <section className="section section-tint">
+        <div className="container">
+          <div className="section-head">
+            <h2>Meet the presenters</h2>
+            <Link to="/presenters" className="text-link">All presenters</Link>
+          </div>
+          {presenters.map((g) => (
+            <PresenterCarousel key={g.show} group={g} />
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
         <div className="container split">
           <img className="split-img" src={story.image} alt="" loading="lazy" />
           <div>
@@ -103,7 +120,7 @@ export default function Home({ onListen }) {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section-tint">
         <div className="container">
           <h2>More from VMC</h2>
           <div className="tiles">
@@ -117,7 +134,7 @@ export default function Home({ onListen }) {
         </div>
       </section>
 
-      <section className="section section-tint">
+      <section className="section">
         <div className="container academy">
           <div>
             <h2>A station that trains the next voices</h2>

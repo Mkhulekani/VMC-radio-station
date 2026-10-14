@@ -38,7 +38,7 @@ const weekdayShows = [
   {
     id: 'platinum-mornings',
     name: 'Platinum Mornings',
-    hosts: 'Phakama & Lesedi',
+    hosts: 'Londiwe, Natasha & Ngci',
     start: '06:00',
     end: '09:00',
     image: img('platinum-mornings-300x300.jpg'),
@@ -46,23 +46,23 @@ const weekdayShows = [
   {
     id: 'vmc-talk',
     name: 'VMC Talk',
-    hosts: 'Ntsako, Thobile & Lindiwe',
+    hosts: 'Nokubonga, Sibongile & Kea',
     start: '09:00',
     end: '12:00',
     image: img('vmc-talk-300x300.jpg'),
   },
   {
     id: 'lunch-breeze',
-    name: 'Lunch Breeze',
-    hosts: 'Innow & Neliswa',
+    name: 'Brunch Breeze',
+    hosts: 'Ponani, Tsheamo & Bokang',
     start: '12:00',
     end: '15:00',
     image: img('LUNCH-300x300.jpg'),
   },
   {
     id: 'route-326',
-    name: 'Route 326',
-    hosts: 'Kim Mbingo, Lwah & Onele',
+    name: 'Route 3–6',
+    hosts: 'Eulander, Ayanda & Simphiwe',
     start: '15:00',
     end: '18:00',
     image: img('ROUTE-3-6-300x300.jpg'),
@@ -123,6 +123,11 @@ export function getOnAir(now = new Date()) {
   return null
 }
 
+// Looks up the presenters for a given show id (matches weekdayShows ids).
+export function getPresentersFor(showId) {
+  return presenters.find((g) => g.id === showId) || null
+}
+
 export const news = [
   {
     id: 'jozi-my-jozi',
@@ -160,6 +165,55 @@ export const principles = [
 ]
 
 // ---------------------------------------------------------------------
+// About page content. Replace the placeholders in [square brackets]
+// once you have the real information. Photos go in public/about/ and
+// public/team/ — set the paths below once you've added them.
+// ---------------------------------------------------------------------
+export const about = {
+  intro:
+    'A youth empowerment and entertainment radio station based in the Johannesburg Athletic Stadium in New Doornfontein, and a division of VMC Academy, a school of media and information technology.',
+
+  story: {
+    title: 'Our story',
+    paragraphs: [
+      '[VMC Planet Radio was founded in YYYY as part of VMC Academy, a school of media and information technology based at the Johannesburg Athletic Stadium in New Doornfontein.]',
+      '[Add 2–3 sentences about why the station was created, who it serves, and what makes it different from other stations in Johannesburg.]',
+      '[Optional: a sentence about the team behind the station, the growth over the years, or the communities it reaches.]',
+    ],
+    // Drop a photo into public/about/ and set the path, e.g. '/about/studio.jpg'.
+    image: '',
+    imageAlt: 'The VMC Planet Radio studio',
+  },
+
+  vision:
+    '[To be the voice of young Johannesburg — a space where young people are heard, trained, and empowered to shape their own future.]',
+  mission:
+    '[To broadcast balanced, entertaining and empowering programming that reflects the lives of young people in our communities.]',
+
+  stats: [
+    { value: '—',  label: 'Weekly listeners' },
+    { value: '4',  label: 'Live shows each weekday' },
+    { value: '19', label: 'Voices on air' },
+    { value: '—',  label: 'Year founded' },
+  ],
+
+  team: [
+    { name: '[Full name]', role: '[Station Manager]',   photo: '' },
+    { name: '[Full name]', role: '[Programme Manager]', photo: '' },
+    { name: '[Full name]', role: '[News Editor]',       photo: '' },
+    { name: '[Full name]', role: '[Head of Music]',     photo: '' },
+  ],
+
+  visit: {
+    title: 'Come see us',
+    text: 'We broadcast live from the Johannesburg Athletic Stadium. Visitors are welcome by appointment.',
+    address: 'Johannesburg Athletic Stadium, New Doornfontein, Johannesburg',
+    image: '',
+    imageAlt: 'The Johannesburg Athletic Stadium',
+  },
+}
+
+// ---------------------------------------------------------------------
 // Navigation (drives the header and the footer)
 // ---------------------------------------------------------------------
 export const menu = [
@@ -186,6 +240,61 @@ export const menu = [
   { label: 'Advertise', to: '/advertise' },
   { label: 'About us', to: '/about' },
   { label: 'Contact us', to: '/contact' },
+]
+
+// ---------------------------------------------------------------------
+// Presenters, grouped by show. Photos live in public/presenters/.
+// The `id` matches the corresponding entry in weekdayShows so the hero
+// "On air now" card can find the presenters for the current show.
+// ---------------------------------------------------------------------
+export const presenters = [
+  {
+    id: 'platinum-mornings',
+    show: 'Platinum Mornings',
+    time: '06:00 – 09:00',
+    people: [
+      { name: 'Londiwe',    photo: '/presenters/londiwe.jpg' },
+      { name: 'Natasha',    photo: '/presenters/natasha.jpg' },
+      { name: 'Ngci',       photo: '/presenters/ngci.jpg' },
+      { name: 'Lebo',       photo: '/presenters/lebo.jpg' },
+      { name: 'Soso',       photo: '/presenters/soso.jpg' },
+      { name: 'Lindokuhle', photo: '/presenters/lindokuhle.jpg' },
+    ],
+  },
+  {
+    id: 'vmc-talk',
+    show: 'VMC Talk',
+    time: '09:00 – 12:00',
+    people: [
+      { name: 'Nokubonga', photo: '/presenters/nokubonga.jpg' },
+      { name: 'Sibongile', photo: '/presenters/sibongile.jpg' },
+      { name: 'Kea',       photo: '/presenters/kea.jpg' },
+    ],
+  },
+  {
+    id: 'lunch-breeze',
+    show: 'Brunch Breeze',
+    time: '12:00 – 15:00',
+    people: [
+      { name: 'Ponani',    photo: '/presenters/ponani.jpg' },
+      { name: 'Tsheamo',   photo: '/presenters/tsheamo.jpg' },
+      { name: 'Bokang',    photo: '/presenters/bokang.jpg' },
+      { name: 'Butomi',    photo: '/presenters/butomi.jpg' },
+      { name: 'Mpumelelo', photo: '/presenters/mpumelelo.jpg' },
+      { name: 'Mpho',      photo: '/presenters/mpho.jpg' },
+      { name: 'Nkhaviso',  photo: '/presenters/nkhaviso.jpg' },
+    ],
+  },
+  {
+    id: 'route-326',
+    show: 'Route 3–6',
+    time: '15:00 – 18:00',
+    people: [
+      { name: 'Eulander',  photo: '/presenters/eulander.jpg' },
+      { name: 'Ayanda',    photo: '/presenters/ayanda.jpg' },
+      { name: 'Simphiwe',  photo: '/presenters/simphiwe.jpg' },
+    ],
+  },
 ]
 
 // ---------------------------------------------------------------------
