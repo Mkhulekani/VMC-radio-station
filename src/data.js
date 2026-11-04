@@ -259,6 +259,8 @@ export const presenters = [
       { name: 'Lebo',       photo: '/presenters/lebo.jpg' },
       { name: 'Soso',       photo: '/presenters/soso.jpg' },
       { name: 'Lindokuhle', photo: '/presenters/lindokuhle.jpg' },
+      { name: 'Anele',      photo: '/presenters/anele.jpg' },
+      { name: 'Phumzile',   photo: '/presenters/phumzile.jpg' },
     ],
   },
   {
@@ -269,6 +271,7 @@ export const presenters = [
       { name: 'Nokubonga', photo: '/presenters/nokubonga.jpg' },
       { name: 'Sibongile', photo: '/presenters/sibongile.jpg' },
       { name: 'Kea',       photo: '/presenters/kea.jpg' },
+      { name: 'Phumzile',  photo: '/presenters/phumzile.jpg' },
     ],
   },
   {
@@ -283,6 +286,7 @@ export const presenters = [
       { name: 'Mpumelelo', photo: '/presenters/mpumelelo.jpg' },
       { name: 'Mpho',      photo: '/presenters/mpho.jpg' },
       { name: 'Nkhaviso',  photo: '/presenters/nkhaviso.jpg' },
+      { name: 'Inno',      photo: '/presenters/inno.jpg' },
     ],
   },
   {
@@ -293,6 +297,15 @@ export const presenters = [
       { name: 'Eulander',  photo: '/presenters/eulander.jpg' },
       { name: 'Ayanda',    photo: '/presenters/ayanda.jpg' },
       { name: 'Simphiwe',  photo: '/presenters/simphiwe.jpg' },
+      { name: 'Phumzile',  photo: '/presenters/phumzile.jpg' },
+    ],
+  },
+  {
+    id: 'news',
+    show: 'News',
+    time: 'Every hour',
+    people: [
+      { name: 'Lihle', photo: '/presenters/lihle.jpg' },
     ],
   },
 ]
