@@ -4,9 +4,10 @@ export const station = {
   name: 'VMC Planet Radio',
   tagline:
     'Youth empowerment and entertainment radio from the Johannesburg Athletic Stadium in New Doornfontein.',
-  phone: '010 335 1111',
-  phoneHref: 'tel:0103351111',
+  phone: '071 560 0639',
+  phoneHref: 'tel:0715600639',
   email: 'studio@vmcplanetradio.co.za',
+  whatsapp: '27715600639',
   address: 'Johannesburg Athletic Stadium, New Doornfontein, Johannesburg',
   logo: '/vmc-logo.png',
   // Live player (hosted by Famcast). Swap this if you get a direct stream URL.
@@ -181,14 +182,14 @@ export const about = {
       '[Optional: a sentence about the team behind the station, the growth over the years, or the communities it reaches.]',
     ],
     // Drop a photo into public/about/ and set the path, e.g. '/about/studio.jpg'.
-    image: '',
+    image: '/about/studio.jpg',
     imageAlt: 'The VMC Planet Radio studio',
   },
 
   vision:
-    '[To be the voice of young Johannesburg — a space where young people are heard, trained, and empowered to shape their own future.]',
+    'To be the leading voice of young Johannesburg — a station where young people are heard, trained and empowered to shape their own future, and where their stories, music and ideas are celebrated with pride.',
   mission:
-    '[To broadcast balanced, entertaining and empowering programming that reflects the lives of young people in our communities.]',
+    'To broadcast balanced, entertaining and empowering programming that reflects the real lives of young people in our communities — while training the next generation of broadcasters and giving local voices a platform they can call their own.',
 
   stats: [
     { value: '—',  label: 'Weekly listeners' },
@@ -271,7 +272,6 @@ export const presenters = [
       { name: 'Nokubonga', photo: '/presenters/nokubonga.jpg' },
       { name: 'Sibongile', photo: '/presenters/sibongile.jpg' },
       { name: 'Kea',       photo: '/presenters/kea.jpg' },
-      { name: 'Phumzile',  photo: '/presenters/phumzile.jpg' },
     ],
   },
   {
@@ -297,7 +297,6 @@ export const presenters = [
       { name: 'Eulander',  photo: '/presenters/eulander.jpg' },
       { name: 'Ayanda',    photo: '/presenters/ayanda.jpg' },
       { name: 'Simphiwe',  photo: '/presenters/simphiwe.jpg' },
-      { name: 'Phumzile',  photo: '/presenters/phumzile.jpg' },
     ],
   },
   {
