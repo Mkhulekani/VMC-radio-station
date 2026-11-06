@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import Player from './components/Player.jsx'
+import WhatsAppButton from './components/WhatsAppButton.jsx'
 import Home from './pages/Home.jsx'
 import Shows from './pages/Shows.jsx'
 import Presenters from './pages/Presenters.jsx'
@@ -52,6 +53,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <WhatsAppButton lift={playerOpen} />
       <Player open={playerOpen} onClose={() => setPlayerOpen(false)} />
     </>
   )

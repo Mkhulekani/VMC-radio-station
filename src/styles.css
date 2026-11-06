@@ -997,3 +997,408 @@ a { overflow-wrap: anywhere; }
   .work-card { padding: 1.25rem 1.25rem 2.75rem; }
   .work-arrow { left: 1.25rem; bottom: 1rem; }
 }
+
+/* =====================================================================
+   Floating WhatsApp button
+   ===================================================================== */
+.whatsapp-fab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 55;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35), 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s, bottom 0.3s ease;
+}
+.whatsapp-fab:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.45), 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+.whatsapp-fab:active {
+  transform: scale(0.97);
+}
+
+.whatsapp-fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25d366;
+  opacity: 0.5;
+  z-index: -1;
+  animation: wa-pulse 2.4s ease-out infinite;
+}
+@keyframes wa-pulse {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.whatsapp-fab.is-lifted {
+  bottom: 240px;
+}
+
+@media (max-width: 480px) {
+  .whatsapp-fab {
+    width: 52px;
+    height: 52px;
+    right: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+  .whatsapp-fab svg { width: 26px; height: 26px; }
+  .whatsapp-fab.is-lifted {
+    bottom: calc(230px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-fab::before { animation: none; }
+  .whatsapp-fab,
+  .whatsapp-fab:hover,
+  .whatsapp-fab:active { transition: none; transform: none; }
+}
+/* =====================================================================
+   Live News Fetcher (South African headlines)
+   ===================================================================== */
+.news-fetcher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.news-fetcher-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.news-fetcher-card:hover {
+  border-color: var(--orange);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.news-fetcher-card h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.4em;
+  line-height: 1.3;
+}
+
+.news-fetcher-meta {
+  font-size: 0.8rem;
+  color: var(--orange-deep);
+  font-weight: 600;
+  margin-bottom: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.news-fetcher-desc {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.news-fetcher-card .text-link {
+  font-size: 0.9rem;
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.news-status {
+  text-align: center;
+  padding: 2rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .news-fetcher-card { padding: 1rem; }
+  .news-fetcher-card h3 { font-size: 1rem; }
+}
+
+/* =====================================================================
+   Contact page — icons + map
+   ===================================================================== */
+.contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: 0.9rem;
+}
+.contact-row--label { margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.contact-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 0.18rem;
+  color: var(--dusk);
+}
+
+.contact-socials {
+  display: flex;
+  gap: 0.9rem;
+  margin-top: 0.15rem;
+}
+.contact-socials a {
+  color: var(--dusk);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.contact-socials a:hover {
+  opacity: 0.75;
+  transform: translateY(-1px);
+}
+.contact-socials svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.contact-map {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-top: 1.75rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--tint);
+}
+.contact-map iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  .contact-map { aspect-ratio: 1 / 1; }
+}
+
+/* =====================================================================
+   Footer social icons
+   ===================================================================== */
+.footer-socials {
+  display: flex;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+.footer-socials a {
+  color: var(--on-dark-soft);
+  transition: color 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+.footer-socials a:hover {
+  color: var(--marigold);
+  transform: translateY(-1px);
+}
+.footer-socials svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Fix footer phone icon size + responsive */
+.footer-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.9rem;
+  flex-wrap: nowrap;
+}
+.footer-contact-icon {
+  width: 16px !important;
+  height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  flex-shrink: 0;
+  color: var(--marigold);
+}
+.footer-contact-row a {
+  color: var(--on-dark-soft);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.footer-contact-row a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+.footer-socials a {
+  color: var(--on-dark-soft);
+  transition: color 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+.footer-socials a:hover {
+  color: var(--marigold);
+  transform: translateY(-1px);
+}
+.footer-socials svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Small phones: shrink icons and text */
+@media (max-width: 480px) {
+  .footer-contact-icon {
+    width: 14px !important;
+    height: 14px !important;
+    max-width: 14px !important;
+    max-height: 14px !important;
+  }
+  .footer-contact-row a {
+    font-size: 0.9rem;
+  }
+  .footer-socials a {
+    width: 28px;
+    height: 28px;
+  }
+  .footer-socials svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* =====================================================================
+   On-air presenters page
+   ===================================================================== */
+.on-air-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+.on-air-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.6rem;
+}
+.on-air-status.is-live { color: var(--dusk); }
+.on-air-status .eq i { background: var(--dusk); }
+
+.on-air-head h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: 0.2em;
+}
+.on-air-meta {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+
+.on-air-people {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.on-air-person {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.on-air-person:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+.on-air-person-photo {
+  aspect-ratio: 1;
+  width: 100%;
+  background: var(--tint);
+  overflow: hidden;
+}
+.on-air-person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.on-air-person h3 {
+  font-size: 1.05rem;
+  margin: 0.9rem 0.9rem 0.15em;
+}
+.on-air-person-role {
+  margin: 0 0.9rem 1rem;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .on-air-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .on-air-people {
+    gap: 1rem;
+  }
+  .on-air-person h3 { font-size: 1rem; }
+  .on-air-person-role { font-size: 0.85rem; }
+}
+
+/* ===== On-air presenters carousel ===== */
+.on-air-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--line); }
+.on-air-status { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.6rem; }
+.on-air-status.is-live { color: var(--dusk); }
+.on-air-status .eq i { background: var(--dusk); }
+.on-air-head h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 0.2em; }
+.on-air-meta { margin: 0; color: var(--ink-soft); font-size: 0.98rem; }
+.on-air-carousel { position: relative; overflow: hidden; mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%); }
+.on-air-track { display: flex; gap: 1.25rem; padding: 0.5rem 0 1rem; margin: 0; list-style: none; width: max-content; animation: on-air-scroll 40s linear infinite; will-change: transform; transform: translateZ(0); backface-visibility: hidden; }
+@media (hover: hover) { .on-air-carousel:hover .on-air-track { animation-play-state: paused; } }
+@keyframes on-air-scroll { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.on-air-person { flex: 0 0 auto; width: 200px; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.4rem 1rem 1.2rem; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.03); transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+.on-air-person:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(209,18,48,0.12); border-color: var(--orange); }
+.on-air-person-photo { position: relative; width: 130px; height: 130px; margin: 0 auto 1rem; border-radius: 50%; overflow: hidden; background: var(--tint); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.on-air-person-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%) contrast(1.05); transition: filter 0.4s ease, transform 0.5s ease; }
+.on-air-person:hover .on-air-person-photo img { filter: grayscale(0%) contrast(1.08); transform: scale(1.05); }
+.on-air-person-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(234,133,153,0.12), rgba(209,18,48,0.08)); pointer-events: none; mix-blend-mode: multiply; }
+.on-air-person h3 { font-size: 1.05rem; margin: 0 0 0.15em; letter-spacing: -0.01em; }
+.on-air-person-role { margin: 0; font-size: 0.85rem; color: var(--ink-soft); }
+.on-air-hint { margin-top: 1rem; font-size: 0.85rem; color: var(--ink-soft); text-align: center; }
+@media (max-width: 480px) { .on-air-head { flex-direction: column; align-items: flex-start; } .on-air-person { width: 160px; padding: 1.1rem 0.75rem 1rem; } .on-air-person-photo { width: 110px; height: 110px; } .on-air-person h3 { font-size: 0.95rem; } .on-air-person-role { font-size: 0.8rem; } .on-air-track { gap: 0.9rem; animation-duration: 32s; } .on-air-hint { display: none; } }
+@media (prefers-reduced-motion: reduce) { .on-air-track { animation: none; } }
+
+/* ===== Google Calendar embed ===== */
+.events-calendar { width: 100%; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; }
+.events-calendar iframe { display: block; width: 100%; height: 600px; border: 0; }
+@media (max-width: 768px) { .events-calendar iframe { height: 480px; } }
+@media (max-width: 480px) { .events-calendar iframe { height: 400px; } }
