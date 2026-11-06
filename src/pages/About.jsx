@@ -2,16 +2,6 @@ import { Link } from 'react-router-dom'
 import PageHead from '../components/PageHead.jsx'
 import { principles, about, station } from '../data.js'
 
-const initials = (name) =>
-  name
-    .replace(/\[|\]/g, '')
-    .split(' ')
-    .map((p) => p[0])
-    .filter(Boolean)
-    .slice(0, 2)
-    .join('')
-    .toUpperCase()
-
 // Reusable photo slot — reserves a fixed aspect ratio so the layout
 // stays aligned whether or not a photo is present.
 function PhotoSlot({ src, alt, ratio = '4 / 3', caption }) {
@@ -91,35 +81,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* ---------- Team ---------- */}
-      <section className="section section-tint">
-        <div className="container">
-          <div className="about-section-head">
-            <h2>Meet the team</h2>
-            <p className="meta">The people who keep the station running day to day.</p>
-          </div>
-          <ul className="team-grid">
-            {about.team.map((m, i) => (
-              <li key={i} className="team-card">
-                <div className="team-photo">
-                  {m.photo ? (
-                    <img src={m.photo} alt="" loading="lazy" />
-                  ) : (
-                    <span className="team-initials" aria-hidden="true">{initials(m.name)}</span>
-                  )}
-                </div>
-                <div className="team-body">
-                  <h3>{m.name}</h3>
-                  <p className="team-role">{m.role}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
       {/* ---------- Principles ---------- */}
-      <section className="section">
+      <section className="section section-tint">
         <div className="container">
           <div className="about-section-head">
             <h2>Our principles</h2>
@@ -137,7 +100,7 @@ export default function About() {
       </section>
 
       {/* ---------- Visit us ---------- */}
-      <section className="section section-tint">
+      <section className="section">
         <div className="container">
           <div className="about-card about-card--reverse">
             <PhotoSlot src={about.visit.image} alt={about.visit.imageAlt} />
@@ -164,7 +127,7 @@ export default function About() {
       </section>
 
       {/* ---------- Work with us ---------- */}
-      <section className="section">
+      <section className="section section-tint">
         <div className="container">
           <div className="about-section-head">
             <h2>Work with us</h2>

@@ -1,29 +1,33 @@
 import { Link } from 'react-router-dom'
 import PageHead from '../components/PageHead.jsx'
-import Empty from '../components/Empty.jsx'
-import { events } from '../data.js'
 
 export default function Events() {
   return (
     <>
-      <PageHead title="Events">Where to find VMC Planet Radio next.</PageHead>
+      <PageHead title="Events">
+        Where to find VMC Planet Radio next — and what's coming up on air.
+      </PageHead>
+
       <section className="section">
         <div className="container">
-          {events.length ? (
-            <div className="card-grid">
-              {events.map((e) => (
-                <article key={e.id} className="info-card">
-                  <p className="meta">{e.date}, {e.venue}</p>
-                  <h3>{e.title}</h3>
-                  <p>{e.summary}</p>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <Empty action={<Link className="btn btn-dark" to="/contact">Ask about an event</Link>}>
-              No events are listed right now. Check back soon, or get in touch to book us for yours.
-            </Empty>
-          )}
+          <div className="section-head">
+            <h2>Calendar</h2>
+            <span className="meta">Updated automatically</span>
+          </div>
+
+          <div className="events-calendar">
+            <iframe
+              src="https://calendar.google.com/calendar/embed?src=mkhulekani.469%40gmail.com&ctz=Africa%2FJohannesburg&bgcolor=%23ffffff&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0"
+              title="VMC Planet Radio events calendar"
+              style={{ border: 0 }}
+              loading="lazy"
+            ></iframe>
+          </div>
+
+          <div className="empty" style={{ marginTop: '2.5rem' }}>
+            <p>Want to host VMC Planet Radio at your event?</p>
+            <Link to="/contact" className="btn btn-dark">Talk to the studio</Link>
+          </div>
         </div>
       </section>
     </>
