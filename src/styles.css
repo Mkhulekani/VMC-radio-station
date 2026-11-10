@@ -1155,3 +1155,11 @@ a { overflow-wrap: anywhere; }
 @media (max-width: 768px) {
   .events-calendar { height: 500px !important; }
 }
+
+/* ===== YouTube Carousel ===== */
+.yt-carousel { position: relative; overflow: hidden; mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%); }
+.yt-track { display: flex; gap: 1.5rem; padding: 1rem 0; width: max-content; animation: yt-scroll 30s linear infinite; will-change: transform; transform: translateZ(0); }
+@media (hover: hover) { .yt-carousel:hover .yt-track { animation-play-state: paused; } }
+@keyframes yt-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.yt-track .yt-card { width: 320px; flex: 0 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+@media (max-width: 480px) { .yt-track .yt-card { width: 260px; } .yt-track { gap: 1rem; animation-duration: 20s; } }

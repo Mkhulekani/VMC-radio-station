@@ -1,17 +1,24 @@
 import { useState, useEffect } from 'react'
 
-const API_KEY = 'AIzaSyQVmPBcW4Q4m4y1__tjRmwodFnzFU2_5M8'
-const PLAYLIST_ID = 'PLXaLBqnbT5uFSnK4-LxRlNnUSeGWDWYgO'
+const API_KEY = 'AIzaSyB_usBeg6ot1CsYpKaXrt7pemOUgERIvIM'
+const CHANNEL_ID = 'UCxeuFWK7f060YImVrl_mjeA' // VMC Planet TV I Radio I Media Channel ID
 
-export default function YouTubeFetcher({ limit = 4 }) {
+// Helper to decode HTML entities in YouTube titles (like &amp;)
+const decodeHTML = (html) => {
+  const txt = document.createElement('textarea')
+  txt.innerHTML = html
+  return txt.value
+}
+
+export default function YouTubeFetcher({ limit = 4, carousel = false }) {
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
   const [errorMsg, setErrorMsg] = useState('')
 
   useEffect(() => {
     const fetchVideos = () => {
-      // We use the `limit` prop to decide how many videos to fetch
-      const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${limit}&playlistId=${PLAYLIST_ID}&key=${API_KEY}`
+      // Using the search endpoint to get the LATEST videos by date
+      const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${limit}&type=video`
 
       fetch(url)
         .then((res) => res.json())
@@ -29,12 +36,8 @@ export default function YouTubeFetcher({ limit = 4 }) {
         })
     }
 
-    fetchVideos() // Fetch immediately when the page loads
-
-    // Automatically check for new videos every 15 minutes
+    fetchVideos() 
     const interval = setInterval(fetchVideos, 15 * 60 * 1000)
-    
-    // Cleanup timer if user leaves the page
     return () => clearInterval(interval)
   }, [limit])
 
@@ -48,33 +51,45 @@ export default function YouTubeFetcher({ limit = 4 }) {
       </div>
     )
   }
+  
+  if (videos.length === 0) return <p>No videos found.</p>
+
+  // Duplicate items for seamless loop if carousel is true
+  const displayVideos = carousel ? [...videos, ...videos] : videos
 
   return (
-    <div className="youtube-grid">
-      {videos.map((video) => {
-        const title = video.snippet.title
-        const videoId = video.snippet.resourceId.videoId
-        const thumbnail = video.snippet.thumbnails.high?.url || video.snippet.thumbnails.default?.url
-        const published = new Date(video.snippet.publishedAt).toLocaleDateString('en-ZA', {
-          day: 'numeric', month: 'short', year: 'numeric'
-        })
+    <div className={carousel ? "yt-carousel" : "youtube-grid"}>
+      <div className={carousel ? "yt-track" : ""} style={!carousel ? { display: 'contents' } : {}}>
+        {displayVideos.map((video, index) => {
+          // The search endpoint nests the ID slightly differently
+          const videoId = video.id.videoId
+          const title = decodeHTML(video.snippet.title)
+          const thumbnail = video.snippet.thumbnails.high?.url || video.snippet.thumbnails.default?.url
+          const published = new Date(video.snippet.publishedAt).toLocaleDateString('en-ZA', {
+            day: 'numeric', month: 'short', year: 'numeric'
+          })
 
-        return (
-          <article key={videoId} className="yt-card">
-            <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noreferrer" className="yt-thumb">
-              <img src={thumbnail} alt="" loading="lazy" />
-              <span className="yt-play">▶</span>
-            </a>
-            <div className="yt-info">
-              <h3>{title}</h3>
-              <p className="meta">{published}</p>
-              <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noreferrer" className="yt-btn">
-                Watch Video
+          return (
+            <article 
+              key={`${videoId}-${index}`} 
+              className="yt-card"
+              aria-hidden={carousel && index >= videos.length}
+            >
+              <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noreferrer" className="yt-thumb">
+                <img src={thumbnail} alt="" loading="lazy" />
+                <span className="yt-play">▶</span>
               </a>
-            </div>
-          </article>
-        )
-      })}
+              <div className="yt-info">
+                <h3>{title}</h3>
+                <p className="meta">{published}</p>
+                <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noreferrer" className="yt-btn">
+                  Watch Video
+                </a>
+              </div>
+            </article>
+          )
+        })}
+      </div>
     </div>
   )
 }

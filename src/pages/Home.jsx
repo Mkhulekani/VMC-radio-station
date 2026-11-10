@@ -108,14 +108,13 @@ export default function Home({ onListen }) {
         </div>
       </section>
 
-      {/* NEW: Latest from VMC TV replaces the old Latest News section */}
       <section className="section">
         <div className="container">
           <div className="section-head">
             <h2>Latest from VMC TV</h2>
             <Link to="/tv" className="text-link">See all videos</Link>
           </div>
-          <YouTubeFetcher />
+          <YouTubeFetcher limit={4} carousel={true} />
         </div>
       </section>
 
