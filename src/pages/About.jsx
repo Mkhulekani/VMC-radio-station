@@ -90,9 +90,16 @@ export default function About() {
           </div>
           <ul className="principles-grid">
             {principles.map((p) => (
-              <li key={p.title} className="principle-card">
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
+              <li key={p.title} className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
+                    <h3>{p.title}</h3>
+                    <span className="flip-hint">Tap to read</span>
+                  </div>
+                  <div className="flip-card-back">
+                    <p>{p.text}</p>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
@@ -103,22 +110,58 @@ export default function About() {
       <section className="section">
         <div className="container">
           <div className="about-card about-card--reverse">
-            <PhotoSlot src={about.visit.image} alt={about.visit.imageAlt} />
+            
+            {/* Studio Info Card (Replaces the empty photo placeholder) */}
+            <div className="visit-info-card">
+              <h3>Studio Information</h3>
+              <div className="visit-info-item">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <div>
+                  <span className="visit-info-label">Operating Hours</span>
+                  <p className="visit-info-text">{about.visit.hours}</p>
+                </div>
+              </div>
+              <div className="visit-info-item">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <div>
+                  <span className="visit-info-label">Booking Policy</span>
+                  <p className="visit-info-text">{about.visit.note}</p>
+                </div>
+              </div>
+            </div>
+
             <div className="about-card-body">
               <h2>{about.visit.title}</h2>
               <p>{about.visit.text}</p>
               <dl className="visit-list">
-                <div>
-                  <dt>Address</dt>
-                  <dd>{about.visit.address}</dd>
+                <div className="visit-item">
+                  <svg className="visit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <div>
+                    <dt>Address</dt>
+                    <dd>{about.visit.address}</dd>
+                  </div>
                 </div>
-                <div>
-                  <dt>Phone</dt>
-                  <dd><a href={station.phoneHref}>{station.phone}</a></dd>
+                <div className="visit-item">
+                  <svg className="visit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <div>
+                    <dt>Phone</dt>
+                    <dd><a href={station.phoneHref}>{station.phone}</a></dd>
+                  </div>
                 </div>
-                <div>
-                  <dt>Email</dt>
-                  <dd><a href={`mailto:${station.email}`}>{station.email}</a></dd>
+                <div className="visit-item">
+                  <svg className="visit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  <div>
+                    <dt>Email</dt>
+                    <dd><a href={`mailto:${station.email}`}>{station.email}</a></dd>
+                  </div>
                 </div>
               </dl>
             </div>

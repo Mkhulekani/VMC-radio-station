@@ -4,6 +4,7 @@ import RotatingWord from '../components/RotatingWord.jsx'
 import ShowCard from '../components/ShowCard.jsx'
 import OnAirPresenters from '../components/OnAirPresenters.jsx'
 import PresenterCarousel from '../components/PresenterCarousel.jsx'
+import YouTubeFetcher from '../components/YouTubeFetcher.jsx'
 import useNow from '../components/useNow.js'
 import { rotatingWords, getOnAir, schedule, news, station, presenters, getPresentersFor } from '../data.js'
 
@@ -107,16 +108,14 @@ export default function Home({ onListen }) {
         </div>
       </section>
 
+      {/* NEW: Latest from VMC TV replaces the old Latest News section */}
       <section className="section">
-        <div className="container split">
-          <img className="split-img" src={story.image} alt="" loading="lazy" />
-          <div>
-            <h2>Latest news</h2>
-            <h3 className="story-title">{story.title}</h3>
-            <p className="meta">By {story.author}, {story.date}</p>
-            <p>{story.summary}</p>
-            <Link to="/news" className="btn btn-dark">Read more news</Link>
+        <div className="container">
+          <div className="section-head">
+            <h2>Latest from VMC TV</h2>
+            <Link to="/tv" className="text-link">See all videos</Link>
           </div>
+          <YouTubeFetcher />
         </div>
       </section>
 

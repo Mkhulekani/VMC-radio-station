@@ -166,36 +166,33 @@ export const principles = [
 ]
 
 // ---------------------------------------------------------------------
-// About page content. Replace the placeholders in [square brackets]
-// once you have the real information. Photos go in public/about/ and
-// public/team/ — set the paths below once you've added them.
+// About page content. 
 // ---------------------------------------------------------------------
 export const about = {
   intro:
-    'A youth empowerment and entertainment radio station based in the Johannesburg Athletic Stadium in New Doornfontein, and a division of VMC Academy, a school of media and information technology.',
+    'VMC Planet Radio is a dynamic, black-owned broadcasting company established in 2019. We are dedicated to delivering high-quality audio content while uplifting and supporting local artists who often go unnoticed.',
 
   story: {
     title: 'Our story',
     paragraphs: [
-      '[VMC Planet Radio was founded in YYYY as part of VMC Academy, a school of media and information technology based at the Johannesburg Athletic Stadium in New Doornfontein.]',
-      '[Add 2–3 sentences about why the station was created, who it serves, and what makes it different from other stations in Johannesburg.]',
-      '[Optional: a sentence about the team behind the station, the growth over the years, or the communities it reaches.]',
+      'Established in 2019, VMC Planet Radio was born from a vision to create a platform that truly connects people through the power of music and conversation. As a proud black-owned enterprise, we set out to build a community hub that celebrates local talent and gives artists the opportunity to create an income from their skills and creativity.',
+      'We believe that young people are the future. That is why our commitment goes beyond just playing music. We actively run youth empowerment initiatives, including learnerships, internships, and TVET placement programs, giving the next generation the tools and opportunities they need to succeed in the media and IT industries.',
+      'Today, broadcasting from the Johannesburg Athletic Stadium in New Doornfontein, and as a division of VMC Academy, we continue to champion emerging talent, promote cultural diversity, and deliver a unique blend of entertainment, information, and inspiration to a global audience.',
     ],
-    // Drop a photo into public/about/ and set the path, e.g. '/about/studio.jpg'.
     image: '/about/studio.jpg',
     imageAlt: 'The VMC Planet Radio studio',
   },
 
   vision:
-    'To be the leading voice of young Johannesburg — a station where young people are heard, trained and empowered to shape their own future, and where their stories, music and ideas are celebrated with pride.',
+    'To be the go-to destination for listeners seeking a unique blend of entertainment, information, and inspiration, while championing emerging talent and promoting cultural diversity.',
   mission:
-    'To broadcast balanced, entertaining and empowering programming that reflects the real lives of young people in our communities — while training the next generation of broadcasters and giving local voices a platform they can call their own.',
+    'To connect people through the power of music and conversation, fostering a sense of community and belonging while providing a platform for artists and thought leaders to share their voices.',
 
   stats: [
-    { value: '—',  label: 'Weekly listeners' },
-    { value: '4',  label: 'Live shows each weekday' },
-    { value: '19', label: 'Voices on air' },
-    { value: '—',  label: 'Year founded' },
+    { value: '2019', label: 'Year founded' },
+    { value: '4',    label: 'Live shows each weekday' },
+    { value: '19',   label: 'Voices on air' },
+    { value: '100%', label: 'Black-owned' },
   ],
 
   team: [
@@ -209,8 +206,10 @@ export const about = {
     title: 'Come see us',
     text: 'We broadcast live from the Johannesburg Athletic Stadium. Visitors are welcome by appointment.',
     address: 'Johannesburg Athletic Stadium, New Doornfontein, Johannesburg',
-    image: '',
+    image: '', 
     imageAlt: 'The Johannesburg Athletic Stadium',
+    hours: 'Monday – Friday: 08:00 – 17:00',
+    note: 'For studio tours and interviews, please contact us at least 48 hours in advance.'
   },
 }
 
@@ -260,8 +259,6 @@ export const presenters = [
       { name: 'Lebo',       photo: '/presenters/lebo.jpg' },
       { name: 'Soso',       photo: '/presenters/soso.jpg' },
       { name: 'Lindokuhle', photo: '/presenters/lindokuhle.jpg' },
-      { name: 'Anele',      photo: '/presenters/anele.jpg' },
-      { name: 'Phumzile',   photo: '/presenters/phumzile.jpg' },
     ],
   },
   {
@@ -286,7 +283,6 @@ export const presenters = [
       { name: 'Mpumelelo', photo: '/presenters/mpumelelo.jpg' },
       { name: 'Mpho',      photo: '/presenters/mpho.jpg' },
       { name: 'Nkhaviso',  photo: '/presenters/nkhaviso.jpg' },
-      { name: 'Inno',      photo: '/presenters/inno.jpg' },
     ],
   },
   {
@@ -297,14 +293,6 @@ export const presenters = [
       { name: 'Eulander',  photo: '/presenters/eulander.jpg' },
       { name: 'Ayanda',    photo: '/presenters/ayanda.jpg' },
       { name: 'Simphiwe',  photo: '/presenters/simphiwe.jpg' },
-    ],
-  },
-  {
-    id: 'news',
-    show: 'News',
-    time: 'Every hour',
-    people: [
-      { name: 'Lihle', photo: '/presenters/lihle.jpg' },
     ],
   },
 ]
