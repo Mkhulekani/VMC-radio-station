@@ -1050,3 +1050,65 @@ a { overflow-wrap: anywhere; }
 .visit-info-item svg { color: var(--orange); flex-shrink: 0; margin-top: 0.2rem; }
 .visit-info-label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--on-dark-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
 .visit-info-text { margin: 0; font-size: 0.95rem; line-height: 1.5; color: #fff; }
+
+/* =====================================================================
+   Live News Fetcher (South African headlines)
+   ===================================================================== */
+.news-fetcher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+.news-fetcher-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.news-fetcher-card:hover {
+  border-color: var(--orange);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+.news-fetcher-card h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.4em;
+  line-height: 1.3;
+}
+.news-fetcher-meta {
+  font-size: 0.8rem;
+  color: var(--orange-deep);
+  font-weight: 600;
+  margin-bottom: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.news-fetcher-desc {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+.news-fetcher-card .text-link {
+  font-size: 0.9rem;
+  align-self: flex-start;
+  margin-top: auto;
+}
+.news-status {
+  text-align: center;
+  padding: 2rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+@media (max-width: 480px) {
+  .news-fetcher-card {
+    padding: 1rem;
+  }
+  .news-fetcher-card h3 {
+    font-size: 1rem;
+  }
+}
