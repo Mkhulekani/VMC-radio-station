@@ -20,6 +20,8 @@ export default function Events() {
               src="https://calendar.google.com/calendar/embed?src=mkhulekani.469%40gmail.com&ctz=Africa%2FJohannesburg&bgcolor=%23ffffff&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0"
               title="VMC Planet Radio events calendar"
               style={{ border: 0 }}
+              width="100%"
+              height="100%"
               loading="lazy"
             ></iframe>
           </div>
