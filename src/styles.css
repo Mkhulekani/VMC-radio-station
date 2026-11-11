@@ -1177,3 +1177,61 @@ a { overflow-wrap: anywhere; }
 .contact-map { width: 100%; height: 450px; margin-top: 2rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--tint); }
 .contact-map iframe { width: 100%; height: 100%; display: block; border: 0; }
 @media (max-width: 768px) { .contact-map { height: 350px; } }
+
+/* ===== More from VMC Carousel ===== */
+.tiles-carousel { position: relative; overflow: hidden; margin-top: 1.5rem; mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%); }
+.tiles-track { display: flex; gap: 1.25rem; padding: 0.5rem 0; width: max-content; animation: tiles-scroll 25s linear infinite; will-change: transform; transform: translateZ(0); }
+@media (hover: hover) { .tiles-carousel:hover .tiles-track { animation-play-state: paused; } }
+@keyframes tiles-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.tiles-track .tile { width: 260px; flex: 0 0 auto; margin: 0; }
+@media (max-width: 480px) { .tiles-track .tile { width: 220px; } .tiles-track { gap: 1rem; animation-duration: 20s; } }
+
+/* ===== Home Page Flip Tiles ===== */
+.tiles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+.flip-tile { background-color: transparent; height: 160px; cursor: pointer; perspective: 1000px; display: block; text-decoration: none; }
+.flip-tile-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; border-radius: var(--radius); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+.flip-tile:hover .flip-tile-inner, .flip-tile:focus-within .flip-tile-inner { transform: rotateY(180deg); }
+.flip-tile-front, .flip-tile-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid var(--line); }
+.flip-tile-front { background: #fff; color: var(--dusk); }
+.flip-tile-front h3 { margin: 0; font-size: 1.15rem; }
+.flip-tile-back { background: linear-gradient(135deg, var(--night), var(--dusk)); color: var(--on-dark); transform: rotateY(180deg); }
+.flip-tile-back p { margin: 0 0 0.5rem 0; font-size: 0.95rem; color: var(--on-dark-soft); }
+
+/* ===== Force WhatsApp Button Visibility ===== */
+.whatsapp-fab { position: fixed !important; right: 1.25rem !important; bottom: 1.25rem !important; z-index: 9999 !important; display: flex !important; visibility: visible !important; opacity: 1 !important; }
+.whatsapp-fab.is-lifted { bottom: 240px !important; }
+@media (max-width: 480px) {
+  .whatsapp-fab { right: 1rem !important; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important; width: 52px !important; height: 52px !important; }
+  .whatsapp-fab.is-lifted { bottom: calc(230px + env(safe-area-inset-bottom, 0px)) !important; }
+}
+
+/* ===== Floating Widgets Group ===== */
+.floating-widgets { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 9999; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; transition: bottom 0.3s ease; }
+.floating-widgets.is-lifted { bottom: 240px; }
+.floating-socials { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 0.2rem; }
+.social-icon { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.2s, filter 0.2s; }
+.social-icon:hover { transform: scale(1.1); filter: brightness(1.1); }
+.social-icon.fb { background: #1877F2; }
+.social-icon.ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-icon.x { background: #000000; }
+@media (max-width: 768px) { .floating-socials { display: none; } .floating-widgets { bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); right: 1rem; } .floating-widgets.is-lifted { bottom: calc(230px + env(safe-area-inset-bottom, 0px)); } .whatsapp-fab { position: static !important; margin: 0 !important; } }
+
+/* Change to horizontal row */
+.floating-widgets { flex-direction: row !important; bottom: 1.25rem; }
+.floating-socials { flex-direction: row !important; margin-bottom: 0 !important; gap: 0.8rem; }
+@media (max-width: 768px) { .floating-widgets { right: 1rem; } }
+
+/* Fix overlap in floating widgets */
+.floating-widgets { display: flex !important; flex-direction: column !important; gap: 1rem !important; align-items: center !important; }
+.floating-socials { display: flex !important; flex-direction: column !important; gap: 1rem !important; margin-bottom: 0 !important; }
+.whatsapp-fab { position: relative !important; margin: 0 !important; bottom: auto !important; right: auto !important; }
+
+/* Fix WhatsApp size and color in the stack */
+.floating-socials a, .floating-widgets .whatsapp-fab { width: 44px !important; height: 44px !important; border-radius: 50% !important; display: grid !important; place-items: center !important; padding: 0 !important; }
+.floating-widgets .whatsapp-fab { background-color: #25D366 !important; color: #fff !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important; transition: transform 0.2s, filter 0.2s !important; }
+.floating-widgets .whatsapp-fab:hover { transform: scale(1.1) !important; filter: brightness(1.1) !important; }
+.floating-widgets .whatsapp-fab svg { width: 22px !important; height: 22px !important; }
+
+/* Colors for TikTok and YouTube */
+.social-icon.tiktok { background: #000000; }
+.social-icon.yt { background: #FF0000; }

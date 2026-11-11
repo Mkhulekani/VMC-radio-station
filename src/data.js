@@ -16,6 +16,8 @@ export const station = {
     { label: 'Facebook', href: 'https://www.facebook.com/vmcplanet/' },
     { label: 'Instagram', href: 'https://www.instagram.com/vmcplanetradio/' },
     { label: 'X (Twitter)', href: 'https://twitter.com/Vmcplanetradio' },
+    { label: 'TikTok', href: 'https://www.tiktok.com/@vmcplanetradio?_r=1&_t=ZS-9BJUiCY3P8b' },
+    { label: 'YouTube', href: 'https://www.youtube.com/@VMCPlanetRadio' },
   ],
 }
 

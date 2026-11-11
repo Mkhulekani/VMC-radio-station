@@ -6,7 +6,7 @@ import OnAirPresenters from '../components/OnAirPresenters.jsx'
 import PresenterCarousel from '../components/PresenterCarousel.jsx'
 import YouTubeFetcher from '../components/YouTubeFetcher.jsx'
 import useNow from '../components/useNow.js'
-import { rotatingWords, getOnAir, schedule, news, station, presenters, getPresentersFor } from '../data.js'
+import { rotatingWords, getOnAir, schedule, presenters, getPresentersFor } from '../data.js'
 
 const tiles = [
   { to: '/competition', title: 'Competitions', text: 'Listen in, enter and win.' },
@@ -23,7 +23,6 @@ export default function Home({ onListen }) {
   const today = schedule[now.getDay()]
   const liveId = onAir?.state === 'live' ? onAir.show.id : null
   const onAirPresenters = onAir ? getPresentersFor(onAir.show.id) : null
-  const story = news[0]
 
   return (
     <>
@@ -121,33 +120,20 @@ export default function Home({ onListen }) {
       <section className="section section-tint">
         <div className="container">
           <h2>More from VMC</h2>
-          <div className="tiles">
+          <div className="tiles-grid">
             {tiles.map((t) => (
-              <Link key={t.to} to={t.to} className="tile">
-                <h3>{t.title}</h3>
-                <p>{t.text}</p>
+              <Link key={t.to} to={t.to} className="flip-tile">
+                <div className="flip-tile-inner">
+                  <div className="flip-tile-front">
+                    <h3>{t.title}</h3>
+                  </div>
+                  <div className="flip-tile-back">
+                    <p>{t.text}</p>
+                    <span className="text-link" style={{ color: 'var(--marigold)' }}>Go to page →</span>
+                  </div>
+                </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container academy">
-          <div>
-            <h2>A station that trains the next voices</h2>
-            <p>
-              VMC Planet Radio is a division of VMC Academy, a school of media and
-              information technology. Young people learn the craft here, then take it
-              to air.
-            </p>
-            <Link to="/about" className="btn btn-dark">About the station</Link>
-          </div>
-          <div className="contact-card">
-            <h3>Talk to the studio</h3>
-            <p><a href={station.phoneHref}>{station.phone}</a></p>
-            <p><a href={`mailto:${station.email}`}>{station.email}</a></p>
-            <Link to="/contact" className="text-link">More ways to reach us</Link>
           </div>
         </div>
       </section>
