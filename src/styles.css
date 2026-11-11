@@ -924,15 +924,66 @@ a { overflow-wrap: anywhere; }
 
 /* ===== Hero Mobile Adjustments ===== */
 @media (max-width: 480px) {
-  .hero { padding-top: calc(var(--header-h) + 1rem); }
-  .hero h1 { font-size: clamp(1.8rem, 8vw, 3rem) !important; line-height: 1.1; }
-  .rotator { height: 1.2em; }
-  .lead { font-size: 1rem !important; margin-top: 0.5rem; }
-  .on-air { padding: 1rem; gap: 0.5rem; }
-  .on-air-label { font-size: 0.8rem; margin-bottom: 0.5rem; }
-  .on-air img { border-radius: 8px; }
-  .on-air h2 { font-size: 1.25rem; }
+  .hero { 
+    padding-top: calc(var(--header-h) + 1rem); 
+    align-items: flex-start;
+  }
+  .hero h1 { 
+    font-size: 2.2rem !important; 
+    line-height: 1.1; 
+    letter-spacing: -0.02em;
+  }
+  .rotator { 
+    height: 1.3em; 
+  }
+  .rotator-word {
+    white-space: normal !important;
+  }
+  .lead { 
+    font-size: 1rem !important; 
+    margin-top: 0.5rem; 
+  }
+  .on-air { 
+    padding: 1rem; 
+    gap: 0.5rem; 
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .on-air img {
+    display: none;
+  }
+  .on-air h2 { 
+    font-size: 1.3rem; 
+  }
   .mini-presenter { width: 42px; }
   .mini-presenter img { width: 42px; height: 42px; }
   .mini-presenter span { font-size: 0.65rem; }
+}
+
+/* ===== Mobile Floating Icons ===== */
+@media (max-width: 768px) {
+  .floating-socials { 
+    display: flex !important; 
+    flex-direction: row !important; 
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+    max-width: 100px;
+    gap: 0.5rem !important;
+  }
+  .floating-widgets { 
+    right: 1rem !important; 
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important; 
+    gap: 0.6rem !important;
+  }
+  .floating-widgets.is-lifted { 
+    bottom: calc(230px + env(safe-area-inset-bottom, 0px)) !important; 
+  }
+  .social-icon, .floating-widgets .whatsapp-fab {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .social-icon svg, .floating-widgets .whatsapp-fab svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
 }

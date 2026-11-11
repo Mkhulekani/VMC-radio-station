@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 
 const API_KEY = 'AIzaSyB_usBeg6ot1CsYpKaXrt7pemOUgERIvIM'
-const CHANNEL_ID = 'UCxeuFWK7f060YImVrl_mjeA' // VMC Planet TV I Radio I Media Channel ID
+// The UU... ID we found (Uploads Playlist)
+const UPLOADS_PLAYLIST_ID = 'UUxeuFWK7f060YImVrl_mjeA' 
 
 // Helper to decode HTML entities in YouTube titles (like &amp;)
 const decodeHTML = (html) => {
@@ -17,8 +18,8 @@ export default function YouTubeFetcher({ limit = 4, carousel = false }) {
 
   useEffect(() => {
     const fetchVideos = () => {
-      // Using the search endpoint to get the LATEST videos by date
-      const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${limit}&type=video`
+      // Using playlistItems (cheap, 1 unit) instead of search (expensive, 100 units)
+      const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${limit}&playlistId=${UPLOADS_PLAYLIST_ID}&key=${API_KEY}`
 
       fetch(url)
         .then((res) => res.json())
@@ -61,8 +62,8 @@ export default function YouTubeFetcher({ limit = 4, carousel = false }) {
     <div className={carousel ? "yt-carousel" : "youtube-grid"}>
       <div className={carousel ? "yt-track" : ""} style={!carousel ? { display: 'contents' } : {}}>
         {displayVideos.map((video, index) => {
-          // The search endpoint nests the ID slightly differently
-          const videoId = video.id.videoId
+          // playlistItems nests the ID differently than search
+          const videoId = video.snippet.resourceId.videoId
           const title = decodeHTML(video.snippet.title)
           const thumbnail = video.snippet.thumbnails.high?.url || video.snippet.thumbnails.default?.url
           const published = new Date(video.snippet.publishedAt).toLocaleDateString('en-ZA', {
