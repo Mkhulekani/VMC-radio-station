@@ -998,3 +998,14 @@ a { overflow-wrap: anywhere; }
     gap: 0.8rem !important;
   }
 }
+
+/* ===== Fix On-Air Presenter Photos ===== */
+.mini-presenter img {
+  width: 52px !important;
+  height: 52px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  display: block !important;
+  margin: 0 auto 0.25rem auto !important;
+  background-color: var(--tint) !important;
+}
